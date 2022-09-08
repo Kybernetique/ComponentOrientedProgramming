@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsControlLibrary.HelperModel;
+using WinFormsControlLibrary;
 
 namespace WinFormsApp
 {
@@ -23,23 +23,25 @@ namespace WinFormsApp
             userControlListBox.AddElement(userControlTextBox1.Value.ToString());
         }
 
-        private void buttonAddToTable_Click(object sender, EventArgs e)
+        private void userControlDataGrid_Load(object sender, EventArgs e)
         {
+            Test firstObject = new Test();
+            firstObject.name = "user01";
 
+            Test secondObject = new Test();
+            secondObject.name = "user02";
+
+            ColumnsDataGrid column = new ColumnsDataGrid();
+            column.CountColumn = 1;
+            column.NameColumn = new string[] { "name"};
+            column.Width = new int[] { 249 };
+            column.Visible = new bool[] { true, true };
+            column.PropertiesObject = new string[] { "name"};
+
+            userControlDataGrid.ConfigColumn(column);
+            userControlDataGrid.AddRow(firstObject);
+            userControlDataGrid.AddRow(secondObject);
         }
 
-        /*        private void buttonAddToTable_Click(object sender, EventArgs e)
-                {
-                    userControlDataGrid.LoadColumns(new List<TableConfig>
-                    {
-                        new TableConfig(){ 
-                            Header = "Name",
-                            Width= 150,
-                            Visible = true,
-                            PropertyName = "Name1",
-                        }
-                    });
-                    userControlDataGrid.AddElement("Object");
-                }*/
     }
 }

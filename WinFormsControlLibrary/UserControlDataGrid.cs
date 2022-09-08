@@ -8,102 +8,98 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsControlLibrary.HelperModel;
 
 namespace WinFormsControlLibrary
 {
     public partial class UserControlDataGrid : UserControl
     {
-        public UserControlDataGrid()
+        public int IndexRow
         {
-            InitializeComponent();
-        }
-
-
-        public void AddElement<T>(T element)
-        {
-            if (element != null)
-            {
-                List<object> newRow = new List<object>(dataGridView.Columns.Count);
-                foreach (DataGridViewTextBoxColumn column in dataGridView.Columns)
-                {
-                    PropertyInfo property = element.GetType().GetProperty(column.Tag.ToString());
-                    object value;
-                    if (property != null)
-                    {
-                        value = property.GetValue(element, null);
-                    }
-                    else
-                    {
-                        value = null;
-                    }
-                    newRow.Add(value);
-                }
-                dataGridView.Rows.Add(newRow.ToArray());
-            }
-        }
-
-        public int SelectedRowIndex
-        {
-            get
-            {
-                return (dataGridView.SelectedRows.Count > 0 ? dataGridView.SelectedRows[0].Index : -1);
-            }
+            get { return dataGridView.SelectedRows[0].Index; }
             set
             {
-                if (value > -1 && value < dataGridView.Rows.Count)
+                if (dataGridView.SelectedRows.Count <= value || value < 0)
+                    throw new ArgumentException(string.Format("{0} is an invalid row index.", value));
+                else
                 {
+                    dataGridView.ClearSelection();
                     dataGridView.Rows[value].Selected = true;
                 }
             }
         }
 
-        public void LoadColumns(List<TableConfig> columns)
+        // Инициализация DataGrid
+        public UserControlDataGrid()
         {
+            InitializeComponent();
+        }
+
+        // Метoд очистки строк DataGrid
+        public void ClearDataGrid()
+        {
+            dataGridView.DataSource = null;
+        }
+
+        // Метод конфигурации DataGridView. Отдельный метод для конфигурации столбцов. Через 
+        // метод указывается сколько колонок в DataGridView добавлять, 
+        // их заголовки, ширину, признак видимости и имя свойства/поля
+        // объекта класса, записи которого будут в таблице выводиться,
+        // значение из которого потребуется выводить в ячейке этой колонки.
+        public void ConfigColumn(ColumnsDataGrid columnsData)
+        {
+            dataGridView.ColumnCount = columnsData.CountColumn;
+            for (int i = 0; i < columnsData.CountColumn; i++)
             {
-                dataGridView.Columns.Clear();
-                foreach (TableConfig column in columns)
-                {
-                    int index = dataGridView.Columns.Add(column.PropertyName, column.Header);
-                    dataGridView.Columns[index].Visible = column.Visible;
-                    dataGridView.Columns[index].Width = (int)column.Width;
-                }
+                dataGridView.Columns[i].Name = columnsData.NameColumn[i];
+                dataGridView.Columns[i].Width = columnsData.Width[i];
+                dataGridView.Columns[i].Visible = columnsData.Visible[i];
+                dataGridView.Columns[i].DataPropertyName = columnsData.PropertiesObject[i];
             }
         }
 
-        public void Clear()
+        // Полуение объекта из строки
+        public T GetSelectedObjectIntoRow<T>()
         {
-            dataGridView.Rows.Clear();
-        }
-
-        public T GetSelectedObject<T>()
-        where T : class, new()
-        {
-            T t;
-
-            if (dataGridView.SelectedRows.Count != 0)
+            T objectMy = (T) Activator.CreateInstance(typeof(T));
+            var propertiesObj = typeof(T).GetProperties();
+            foreach (var properties in propertiesObj)
             {
-                T tempT = Activator.CreateInstance<T>();
-                foreach (DataGridViewCell cell in dataGridView.SelectedRows[0].Cells)
+                bool propIsExist = false;
+                int columnIndex = 0;
+                for (; columnIndex < dataGridView.Columns.Count; columnIndex++)
                 {
-                    Type type = tempT.GetType();
-                    string str;
-                    object tag = dataGridView.Columns[cell.ColumnIndex].Tag;
-                    str = tag?.ToString();
-                    PropertyInfo property = type.GetProperty(str);
-
-                    if (property != null)
+                    if (dataGridView.Columns[columnIndex].DataPropertyName.ToString() == properties.Name)
                     {
-                        property.SetValue(tempT, cell.Value);
+                        propIsExist = true;
+                        break;
                     }
                 }
-                t = tempT;
+                if (!propIsExist) { throw new Exception("can not find propertie"); };
+                object value = dataGridView.SelectedRows[0].Cells[columnIndex].Value;
+                properties.SetValue(objectMy, value);
             }
-            else
+            return objectMy;
+        }
+
+        //  Заполнение DataGridView построчно
+
+        public void AddRow<T>(T objectMy)
+        {
+            int count = dataGridView.Columns.Count;
+            string[] objValue = new string[count];
+            int j = 0;
+            foreach (var prop in typeof(T).GetProperties())
             {
-                t = default;
+                objValue[j] = prop.GetValue(objectMy).ToString();
+                Console.WriteLine(prop.Name + prop.GetValue(objectMy));
+                j++;
             }
-            return t;
+            int rowId = dataGridView.Rows.Add();
+            var row = dataGridView.Rows[rowId];
+            for (int i = 0; i < count; i++)
+            {
+                row.Cells[i].Value = objValue[i];
+            }
         }
     }
 }
