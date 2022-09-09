@@ -1,9 +1,9 @@
-﻿using NonVisualComponents.HelperModels;
-using DocumentFormat.OpenXml;
+﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using NonVisualComponents.HelperModels;
 using Xceed.Document.NET;
 using Xceed.Words.NET;
 

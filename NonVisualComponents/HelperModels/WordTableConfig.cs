@@ -21,4 +21,3 @@ namespace NonVisualComponents.HelperModels
         public List<T> ListData { get; set; }
     }
 }
-}

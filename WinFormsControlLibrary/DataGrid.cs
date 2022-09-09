@@ -82,6 +82,7 @@ namespace WinFormsControlLibrary
         }
 
         //  Заполнение DataGridView построчно
+        // Заполнение DataGridView построчно
         public void AddRow<T>(T objectMy)
         {
             int count = dataGridView.Columns.Count;
