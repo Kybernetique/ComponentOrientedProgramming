@@ -60,7 +60,7 @@ namespace WinFormsControlLibrary
         // Полуение объекта из строки
         public T GetSelectedObjectIntoRow<T>()
         {
-            T objectMy = (T) Activator.CreateInstance(typeof(T));
+            T objectMy = (T)Activator.CreateInstance(typeof(T));
             var propertiesObj = typeof(T).GetProperties();
             foreach (var properties in propertiesObj)
             {
@@ -94,12 +94,6 @@ namespace WinFormsControlLibrary
                 j++;
             }
             dataGridView.Rows.Add(objValue);
-            //int rowId = dataGridView.Rows.Add(objValue);
-            //var row = dataGridView.Rows[rowId];
-            //for (int i = 0; i < count; i++)
-            //{
-            //    row.Cells[i].Value = objValue[i];
-            //}
         }
     }
 }

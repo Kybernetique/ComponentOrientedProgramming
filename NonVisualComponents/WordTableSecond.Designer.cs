@@ -1,6 +1,6 @@
 ﻿namespace NonVisualComponents
 {
-    partial class HistogramWord
+    partial class WordTableSecond
     {
         /// <summary>
         /// Обязательная переменная конструктора.
