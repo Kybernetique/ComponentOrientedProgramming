@@ -3,13 +3,14 @@ using System.Windows.Forms;
 
 namespace WinFormsControlLibrary
 {
-    public partial class UserControlTextBox : UserControl
+    public partial class TextBox : UserControl
     {
-        public UserControlTextBox()
+        public TextBox()
         {
             InitializeComponent();
         }
 
+        // Проверка на null
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             textBox.Enabled = !checkBox.Checked;

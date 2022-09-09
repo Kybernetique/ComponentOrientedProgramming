@@ -10,13 +10,14 @@ using System.Windows.Forms;
 
 namespace WinFormsControlLibrary
 {
-    public partial class UserControlListBox : UserControl
+    public partial class ListBox : UserControl
     {
-        public UserControlListBox()
+        public ListBox()
         {
             InitializeComponent();
         }
 
+        // Метод из задания
         public void AddElement(string element)
         {
             if (!string.IsNullOrEmpty(element))

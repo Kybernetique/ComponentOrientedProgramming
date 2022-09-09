@@ -1,6 +1,6 @@
 ﻿namespace WinFormsControlLibrary
 {
-    partial class UserControlTextBox
+    partial class TextBox
     {
         /// <summary>
         /// Required designer variable.

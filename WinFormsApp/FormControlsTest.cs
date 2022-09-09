@@ -25,23 +25,22 @@ namespace WinFormsApp
 
         private void userControlDataGrid_Load(object sender, EventArgs e)
         {
-            Test firstObject = new Test();
-            firstObject.name = "user01";
-
-            Test secondObject = new Test();
-            secondObject.name = "user02";
-
             ColumnsDataGrid column = new ColumnsDataGrid();
             column.CountColumn = 1;
-            column.NameColumn = new string[] { "name"};
-            column.Width = new int[] { 249 };
+            column.NameColumn = new string[] { "name" };
+            column.Width = new int[] { 450 };
             column.Visible = new bool[] { true, true };
-            column.PropertiesObject = new string[] { "name"};
+            column.PropertiesObject = new string[] { "name" };
 
             userControlDataGrid.ConfigColumn(column);
-            userControlDataGrid.AddRow(firstObject);
-            userControlDataGrid.AddRow(secondObject);
         }
 
+        private void buttonAddToTable_Click(object sender, EventArgs e)
+        {
+            Test obj = new Test();
+            obj.name = userControlTextBox2.Value.ToString();
+            userControlDataGrid.AddRow(obj);
+
+        }
     }
 }

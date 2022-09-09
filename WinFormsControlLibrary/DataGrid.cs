@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace WinFormsControlLibrary
 {
-    public partial class UserControlDataGrid : UserControl
+    public partial class DataGrid : UserControl
     {
         public int IndexRow
         {
@@ -29,7 +29,7 @@ namespace WinFormsControlLibrary
         }
 
         // Инициализация DataGrid
-        public UserControlDataGrid()
+        public DataGrid()
         {
             InitializeComponent();
         }
@@ -82,11 +82,10 @@ namespace WinFormsControlLibrary
         }
 
         //  Заполнение DataGridView построчно
-
         public void AddRow<T>(T objectMy)
         {
             int count = dataGridView.Columns.Count;
-            string[] objValue = new string[count];
+            object[] objValue = new object[count];
             int j = 0;
             foreach (var prop in typeof(T).GetProperties())
             {
@@ -94,12 +93,13 @@ namespace WinFormsControlLibrary
                 Console.WriteLine(prop.Name + prop.GetValue(objectMy));
                 j++;
             }
-            int rowId = dataGridView.Rows.Add();
-            var row = dataGridView.Rows[rowId];
-            for (int i = 0; i < count; i++)
-            {
-                row.Cells[i].Value = objValue[i];
-            }
+            dataGridView.Rows.Add(objValue);
+            //int rowId = dataGridView.Rows.Add(objValue);
+            //var row = dataGridView.Rows[rowId];
+            //for (int i = 0; i < count; i++)
+            //{
+            //    row.Cells[i].Value = objValue[i];
+            //}
         }
     }
 }

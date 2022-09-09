@@ -1,6 +1,7 @@
-﻿namespace WinFormsControlLibrary
+﻿
+namespace WinFormsControlLibrary
 {
-    partial class UserControlDataGrid
+    partial class DateTextBoxUserControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,33 +29,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
-            // dataGridView
+            // textBox
             // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(489, 309);
-            this.dataGridView.TabIndex = 0;
+            this.textBox.Location = new System.Drawing.Point(4, 27);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(164, 27);
+            this.textBox.TabIndex = 0;
             // 
-            // UserControlDataGrid
+            // toolTip
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.toolTip.ShowAlways = true;
+            // 
+            // DateTextBoxUserControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView);
-            this.Name = "UserControlDataGrid";
-            this.Size = new System.Drawing.Size(495, 315);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.Controls.Add(this.textBox);
+            this.Name = "DateTextBoxUserControl";
+            this.Size = new System.Drawing.Size(173, 102);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
