@@ -37,7 +37,7 @@
             this.listBox.ItemHeight = 15;
             this.listBox.Location = new System.Drawing.Point(3, 3);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(225, 109);
+            this.listBox.Size = new System.Drawing.Size(152, 124);
             this.listBox.TabIndex = 0;
             // 
             // ListBoxUserControl
@@ -46,7 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listBox);
             this.Name = "ListBoxUserControl";
-            this.Size = new System.Drawing.Size(231, 150);
+            this.Size = new System.Drawing.Size(184, 143);
             this.ResumeLayout(false);
 
         }

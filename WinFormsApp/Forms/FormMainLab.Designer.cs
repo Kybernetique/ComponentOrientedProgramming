@@ -29,30 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.userControlListBox = new WinFormsControlLibrary.ListBox();
             this.wordTableOne = new NonVisualComponents.WordTableOne();
             this.linearDiagramExcelComponent = new App.Components.AlexandrovComponents.LinearDiagramExcelComponent(this.components);
             this.tablePdfComponent = new App.Components.AntonovComponents.TablePdfComponent(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.лабораторныеРаботыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.дисциплиныToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчётPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.линейнаяДиаграммаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBoxUserControl = new App.Components.AlexandrovComponents.ListBoxUserControl();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // userControlListBox
-            // 
-            this.userControlListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlListBox.Location = new System.Drawing.Point(0, 0);
-            this.userControlListBox.Name = "userControlListBox";
-            this.userControlListBox.SelectedElement = "";
-            this.userControlListBox.Size = new System.Drawing.Size(763, 411);
-            this.userControlListBox.TabIndex = 0;
             // 
             // contextMenuStrip
             // 
@@ -64,6 +55,7 @@
             this.линейнаяДиаграммаToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(245, 114);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // лабораторныеРаботыToolStripMenuItem
             // 
@@ -74,6 +66,27 @@
             this.лабораторныеРаботыToolStripMenuItem.Name = "лабораторныеРаботыToolStripMenuItem";
             this.лабораторныеРаботыToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.лабораторныеРаботыToolStripMenuItem.Text = "Лабораторные работы";
+            // 
+            // создатьToolStripMenuItem
+            // 
+            this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
+            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьToolStripMenuItem.Text = "Создать (Cntrl + A)";
+            this.создатьToolStripMenuItem.Click += new System.EventHandler(this.создатьToolStripMenuItem_Click);
+            // 
+            // изменитьToolStripMenuItem
+            // 
+            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.изменитьToolStripMenuItem.Text = "Изменить (Ctrl + U)";
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьToolStripMenuItem.Text = "Удалить (Ctrl + D)";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // дисциплиныToolStripMenuItem
             // 
@@ -87,53 +100,46 @@
             this.отчётWordToolStripMenuItem.Name = "отчётWordToolStripMenuItem";
             this.отчётWordToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.отчётWordToolStripMenuItem.Text = "Отчёт Word (Ctrl + S)";
+            this.отчётWordToolStripMenuItem.Click += new System.EventHandler(this.отчётWordToolStripMenuItem_Click);
             // 
             // отчётPDFToolStripMenuItem
             // 
             this.отчётPDFToolStripMenuItem.Name = "отчётPDFToolStripMenuItem";
             this.отчётPDFToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.отчётPDFToolStripMenuItem.Text = "Отчёт PDF (Ctrl + T)";
+            this.отчётPDFToolStripMenuItem.Click += new System.EventHandler(this.отчётPDFToolStripMenuItem_Click);
             // 
             // линейнаяДиаграммаToolStripMenuItem
             // 
             this.линейнаяДиаграммаToolStripMenuItem.Name = "линейнаяДиаграммаToolStripMenuItem";
             this.линейнаяДиаграммаToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.линейнаяДиаграммаToolStripMenuItem.Text = "Линейная диаграмма (Ctrl + C)";
+            this.линейнаяДиаграммаToolStripMenuItem.Click += new System.EventHandler(this.линейнаяДиаграммаToolStripMenuItem_Click);
             // 
-            // создатьToolStripMenuItem
+            // listBoxUserControl
             // 
-            this.создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            this.создатьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.создатьToolStripMenuItem.Text = "Создать (Cntrl + A)";
-            // 
-            // изменитьToolStripMenuItem
-            // 
-            this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.изменитьToolStripMenuItem.Text = "Изменить (Ctrl + U)";
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.удалитьToolStripMenuItem.Text = "Удалить (Ctrl + D)";
+            this.listBoxUserControl.ContextMenuStrip = this.contextMenuStrip;
+            
+            this.listBoxUserControl.Location = new System.Drawing.Point(12, 12);
+            this.listBoxUserControl.Name = "listBoxUserControl";
+            this.listBoxUserControl.Size = new System.Drawing.Size(174, 145);
+            this.listBoxUserControl.TabIndex = 1;
             // 
             // FormMainLab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 411);
-            this.Controls.Add(this.userControlListBox);
+            this.Controls.Add(this.listBoxUserControl);
             this.Name = "FormMainLab";
             this.Text = "FormMainLab";
+            this.Load += new System.EventHandler(this.FormMainLab_Load);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private WinFormsControlLibrary.ListBox userControlListBox;
         private NonVisualComponents.WordTableOne wordTableOne;
         private Components.AlexandrovComponents.LinearDiagramExcelComponent linearDiagramExcelComponent;
         private Components.AntonovComponents.TablePdfComponent tablePdfComponent;
@@ -146,5 +152,6 @@
         private System.Windows.Forms.ToolStripMenuItem отчётWordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчётPDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem линейнаяДиаграммаToolStripMenuItem;
+        private Components.AlexandrovComponents.ListBoxUserControl listBoxUserControl;
     }
 }

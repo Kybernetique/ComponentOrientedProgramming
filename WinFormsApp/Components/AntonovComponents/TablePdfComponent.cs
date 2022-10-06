@@ -26,6 +26,7 @@ namespace App.Components.AntonovComponents
             InitializeComponent();
         }
 
+
         public TablePdfComponent(IContainer container)
         {
             container.Add(this);

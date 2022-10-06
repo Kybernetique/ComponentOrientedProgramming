@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // listBox
+            // listBox1
             // 
-            this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 15;
-            this.listBox.Location = new System.Drawing.Point(3, 3);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(306, 139);
-            this.listBox.TabIndex = 0;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(3, 3);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(155, 79);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedValueChanged += new System.EventHandler(this.ListBox_SelectedValueChanged);
             // 
-            // UserControlListBox
+            // ListBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listBox);
-            this.Name = "UserControlListBox";
-            this.Size = new System.Drawing.Size(313, 146);
+            this.Controls.Add(this.listBox1);
+            this.Name = "ListBox";
+            this.Size = new System.Drawing.Size(169, 90);
             this.ResumeLayout(false);
 
         }
@@ -54,5 +55,6 @@
         #endregion
 
         private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

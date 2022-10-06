@@ -19,7 +19,7 @@ namespace App.Components.AlexandrovComponents
             get { return listBox.SelectedIndex; }
         }
 
-        public string layout = "Name - {Name}, Age - {Age}";
+        public string layout = "";
         public char preValue = '{';
         public char postValue = '}';
 

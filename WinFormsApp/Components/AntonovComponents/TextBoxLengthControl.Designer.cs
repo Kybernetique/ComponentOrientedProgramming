@@ -34,19 +34,18 @@
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(3, 30);
+            this.textBox.Location = new System.Drawing.Point(3, 3);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(234, 23);
+            this.textBox.Size = new System.Drawing.Size(86, 23);
             this.textBox.TabIndex = 0;
             // 
             // labelError
             // 
             this.labelError.AutoSize = true;
-            this.labelError.Location = new System.Drawing.Point(3, 12);
+            this.labelError.Location = new System.Drawing.Point(95, 3);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(104, 15);
+            this.labelError.Size = new System.Drawing.Size(0, 15);
             this.labelError.TabIndex = 1;
-            this.labelError.Text = "Введите значение";
             // 
             // TextBoxLengthControl
             // 
@@ -55,7 +54,7 @@
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.textBox);
             this.Name = "TextBoxLengthControl";
-            this.Size = new System.Drawing.Size(245, 84);
+            this.Size = new System.Drawing.Size(124, 36);
             this.ResumeLayout(false);
             this.PerformLayout();
 
