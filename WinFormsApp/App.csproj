@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+    <PackageReference Include="PDFsharp-MigraDoc-GDI" Version="1.50.5147" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,11 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\AlexandrovComponents\" />
-    <Folder Include="Components\AntonovComponents\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Update="Components\AlexandrovComponents\DateTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\AlexandrovComponents\ListBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\MyComponents\TextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
