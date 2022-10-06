@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App
+namespace NonVisualComponents.HelperModels
 {
-    public class Lab1
+    public class Test
     {
         public string name { get; set; }
+
+        public int value { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NonVisualComponents
 {
-    partial class WordTableFirst
+    partial class WordTableOne
     {
         /// <summary>
         /// Обязательная переменная конструктора.

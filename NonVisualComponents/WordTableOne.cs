@@ -8,9 +8,9 @@ using NonVisualComponents.HelperModels;
 
 namespace NonVisualComponents
 {
-    public partial class WordTableFirst : Component
+    public partial class WordTableOne : Component
     {
-        public WordTableFirst()
+        public WordTableOne()
         {
             InitializeComponent();
         }
