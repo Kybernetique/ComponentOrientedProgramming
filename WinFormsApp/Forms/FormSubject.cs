@@ -96,7 +96,7 @@ namespace App.Forms
                     dataGridView.CurrentCell = dataGridView.Rows[0].Cells[1];
                     return;
                 }
-                if (dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1].Value != null)
+                else if (dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1].Value != null)
                 {
                     list.Add(new SubjectViewModel());
                     dataGridView.DataSource = new List<SubjectViewModel>(list);

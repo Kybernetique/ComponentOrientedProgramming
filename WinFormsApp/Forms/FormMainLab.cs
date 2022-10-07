@@ -243,8 +243,6 @@ List<Lab> labs = new List<Lab>
             data.Add("sss", arr2);
             Tuple<double, double> axis = new Tuple<double, double>(50, 250);
 
- 
-
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
