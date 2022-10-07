@@ -20,7 +20,6 @@ namespace App.Components.AlexandrovComponents
         public LinearDiagramExcelComponent(IContainer container)
         {
             container.Add(this);
-
             InitializeComponent();
         }
 

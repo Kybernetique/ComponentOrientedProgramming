@@ -9,18 +9,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace App.Forms
 {
     public partial class FormMainLab : Form
     {
-        private readonly LabLogic productLogic = new LabLogic();
-        //наши лабы
-        List<Lab> labs = new List<Lab>
+        private readonly LabLogic labLogic = new LabLogic();
+
+// Наши лабы
+List<Lab> labs = new List<Lab>
         {
                 new Lab { Id = 1, Topic = "Базы данных",Subject = "Программная инженерия", Questions= "Какие бывают базы данных?" },
                 new Lab { Id = 2, Topic = "Программирование",Subject = "Программная инженерия", Questions= "Какие бывают модификаторы доступа? В чём их отличие"},
@@ -43,7 +41,7 @@ namespace App.Forms
             " Вопросы {Questions}");
             try
             {
-                List<LabViewModel> list = productLogic.Read(null);
+                List<LabViewModel> list = labLogic.Read(null);
                 listBoxUserControl.ClearListBox();
                 foreach (LabViewModel product in list)
                 {
@@ -93,7 +91,7 @@ namespace App.Forms
                 try
                 {
                     LabViewModelListBox product = listBoxUserControl.GetSelected<LabViewModelListBox>();
-                    productLogic.Delete(new LabBindingModel { Id = product.Id });
+                    labLogic.Delete(new LabBindingModel { Id = product.Id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -130,7 +128,7 @@ namespace App.Forms
 
         private void CreateDocumentWord()
         {
-            List<LabViewModel> list = productLogic.Read(null);
+            List<LabViewModel> list = labLogic.Read(null);
             string fileName = "";
             try
             {
@@ -220,96 +218,43 @@ namespace App.Forms
                     }
                 }
             }
-
-
-
-
-
-
-
-            //List<LabViewModel> list = productLogic.Read(null);
-            //try
-            //{
-            //    string fileName = "";
-            //    using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
-            //    {
-            //        if (dialog.ShowDialog() == DialogResult.OK)
-            //        {
-            //            fileName = dialog.FileName.ToString();
-            //            MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-            //           MessageBoxIcon.Information);
-            //        }
-            //    }
-            //    bool result = tablePdfComponent.CreateDocumentWithObjects(fileName,
-            //       "Text", list, new List<string>
-            //        { "Id", "name","UnitOfMeasurement", "Country" }, new List<int>
-            //        {2,3}, new Dictionary<int, string> { { 1, "5cm" }, { 3, "5cm" } });
-
-            //    if (result)
-            //    {
-            //        MessageBox.Show("Saved");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Не выполнено", "Ошибка", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //}
         }
 
         private void CreateDiagramExcel()
         {
-            List<LabViewModel> list = productLogic.Read(null);
-            string fileName = "";
+            Dictionary<string, int[]> data = new Dictionary<string, int[]>();
+            data.Add("first", new int[] { 1, 2, 3, 4 });
+            data.Add("second", new int[] { 2, 3, 2, 1 });
+            int[] arr1 = new int[251];
+            arr1[50] = 2;
+            arr1[100] = 3;
+            arr1[150] = 1;
+            arr1[200] = 4;
+            arr1[250] = 2;
+
+            int[] arr2 = new int[251];
+            arr2[50] = 2;
+            arr2[100] = 2;
+            arr2[150] = 2;
+            arr2[200] = 1;
+            arr2[250] = 4;
+
+            data.Add("str", arr1);
+            data.Add("sss", arr2);
+            Tuple<double, double> axis = new Tuple<double, double>(50, 250);
+
+ 
+
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    fileName = dialog.FileName.ToString();
+                    linearDiagramExcelComponent.Save(dialog.FileName, "Title", "Diagram", Components.AlexandrovComponents.HelperEnums.ExcelLegendPosition.Right,
+                        data, axis);
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
                 }
             }
-            List<string> serias = new List<string>();
-            List<string> country = new List<string>();
-            List<int> values = new List<int>();
-            foreach (LabViewModel product in list)
-            {
-                if (!country.Contains(product.Questions))
-                {
-                    country.Add(product.Questions);
-                    values.Add(0);
-                }
-                serias.Add(product.Subject);
-            }
-
-            foreach (LabViewModel product in list)
-            {
-                for (int i = 0; i < country.Count; i++)
-                {
-                    if (country[i] == product.Subject)
-                        values[i]++;
-                }
-            }
-            //// exel Semen
-            //linearDiagramExcelComponent.CreateExcel(new LineChartConfig
-            //{
-            //    FilePath = fileName,
-            //    Header = "Количество продуктов в ращных странах",
-            //    ChartTitle = "Диаграмма",
-            //    Position = LegendPosition.Botton,
-            //    //Это значения по Х
-            //    XValues = new List<List<int>>
-            //            {
-            //               values
-            //            },
-            //    //Это подписи по Х
-            //    YValues = country,
-            //    //Тут история диаграммы
-            //    SeriesNames = new List<string> { "" }
-            //});
-            MessageBox.Show("Отчет сформирован успешно", "Сообщение",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void FormMainLab_Load(object sender, EventArgs e)
@@ -344,7 +289,7 @@ namespace App.Forms
 
         private void линейнаяДиаграммаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CreateDiagramExcel();
         }
     }
 }
