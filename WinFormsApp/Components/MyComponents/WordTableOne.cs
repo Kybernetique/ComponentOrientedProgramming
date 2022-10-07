@@ -32,7 +32,14 @@ namespace NonVisualComponents
             {
                 throw new Exception("Empty Data!");
             }
-
+            if (string.IsNullOrEmpty(filename))
+            {
+                throw new Exception("Empty filename!");
+            }
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new Exception("Empty title!");
+            }
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(filename, WordprocessingDocumentType.Document))
             {
                 MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
@@ -85,13 +92,13 @@ namespace NonVisualComponents
                     }));
 
                     table.AppendChild<TableProperties>(props);
-                    TableRow tr = new TableRow();
-                    TableCell tc = new TableCell();
-                    for (var i = 0; i < tabl.GetLength(1); i++)
+                    TableRow tr;
+                    TableCell tc;
+                    for (var i = 0; i < tabl.GetLength(0); i++)
                     {
                         //  int count = tabl
                         tr = new TableRow();
-                        for (var j = 0; j < tabl.GetLength(0); j++)
+                        for (var j = 0; j < tabl.GetLength(1); j++)
                         {
                             tc = new TableCell();
                             tc.Append(new Paragraph(new Run(new Text(tabl[i, j].ToString()))));
@@ -102,7 +109,7 @@ namespace NonVisualComponents
                     docBody.Append(table);
                 }
                 docBody.AppendChild(CreateSectionProperties());
-                wordDocument.MainDocumentPart.Document.Save();
+                wordDocument.MainDocumentPart.Document.Save(); //
             }
         }
 

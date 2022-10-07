@@ -24,13 +24,15 @@ namespace App.Forms
 
         private void LoadData()
         {
+            listBoxUserControl.SetPreValue("{");
+            listBoxUserControl.SetPostValue("}");
             listBoxUserControl.SetLayout("Дисциплина {Subject}, Идентификатор {Id}, Тема {Topic}," +
-            " Вопросы {Question}");
+            " Вопросы {Questions}");
             try
             {
                 List<LabViewModel> list = productLogic.Read(null);
-/*                listBoxUserControl.ClearListBox();
-*/                foreach (LabViewModel product in list)
+                listBoxUserControl.ClearListBox();
+                foreach (LabViewModel product in list)
                 {
                     listBoxUserControl.AddItem<LabViewModelListBox>(new LabViewModelListBox
                     {
@@ -128,24 +130,24 @@ namespace App.Forms
                        MessageBoxIcon.Information);
                     }
                 }
-                //доделать!!!
+                // TO-DO
                 List<string[,]> datas = new List<string[,]>();
                 int count = list.Count;
-                string[,] data = new string[count, 3];
+                string[,] data = new string[count, 6];
                 int i = 0;
                 foreach (var listItem in list)
                 {
                     data[i, 0] = listItem.StudentOne;
                     data[i, 1] = listItem.StudentTwo;
                     data[i, 2] = listItem.StudentThree;
-                    data[i, 2] = listItem.StudentFour;
-                    data[i, 2] = listItem.StudentFive;
-                    data[i, 2] = listItem.StudentSix;
+                    data[i, 3] = listItem.StudentFour;
+                    data[i, 4] = listItem.StudentFive;
+                    data[i, 5] = listItem.StudentSix;
                     if (i < count)
                         i++;
                 }
                 datas.Add(data);
-                wordTableOne.SaveData(fileName, "otchet", datas);
+                wordTableOne.SaveData(fileName, "Отчёт", datas);
             }
             catch (Exception ex)
             {

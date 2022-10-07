@@ -20,8 +20,8 @@ namespace App.Components.AlexandrovComponents
         }
 
         public string layout = "";
-        public char preValue = '{';
-        public char postValue = '}';
+        public char preValue = ' ';
+        public char postValue = ' ';
 
         public ListBoxUserControl()
         {
@@ -64,10 +64,11 @@ namespace App.Components.AlexandrovComponents
 
             for (int i = 0; i < selectedValues.Length; i++)
             {
-                string value = selectedValues[i];
+                string valueStr = selectedValues[i];
                 string propertyName = layoutWords[(i * 2) + 1];
 
                 PropertyInfo property = item.GetType().GetProperty(propertyName);
+                var value = Convert.ChangeType(valueStr, property.PropertyType);
                 property.SetValue(item, value);
             }
 
@@ -100,5 +101,11 @@ namespace App.Components.AlexandrovComponents
 
             listBox.Items.Add(str);
         }
+
+        public void ClearListBox()
+        {
+            listBox.Items.Clear();
+        }
+
     }
 }
