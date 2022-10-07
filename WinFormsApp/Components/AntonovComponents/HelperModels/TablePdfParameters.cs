@@ -24,13 +24,9 @@ namespace App.Components.AntonovComponents.HelperModels
         /// </summary>
         public List<T> DataList { get; set; }
         /// <summary>
-        /// Список ячеек первой строки шапки
+        /// Список ячеек первого столбца шапки
         /// </summary>
-        public List<CellPdfTable> CellsFirstRow { get; set; }
-        /// <summary>
-        /// Список ячеек второй строки шапки
-        /// </summary>
-        public List<CellPdfTable> CellsSecondRow { get; set; }
+        public List<CellPdfTable> CellsFirstColumn { get; set; }
         /// <summary>
         /// Размер текста заголовка
         /// </summary>

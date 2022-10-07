@@ -17,7 +17,7 @@ namespace App.Components.AntonovComponents
     public partial class TablePdfComponent : Component
     {
         private ErrorTablePdfMessage _errorMessage = ErrorTablePdfMessage.Ошибок_нет;
-        private Dictionary<string, int> _propertyInfos;
+        private List<string> _propertyInfos;
 
         [Category("ComponentPdfDiagram"), Description("Содержание ошибки")]
         public string ErrorMessageString => _errorMessage.ToString();
@@ -25,7 +25,6 @@ namespace App.Components.AntonovComponents
         {
             InitializeComponent();
         }
-
 
         public TablePdfComponent(IContainer container)
         {
@@ -59,7 +58,7 @@ namespace App.Components.AntonovComponents
                 return false;
             }
 
-            if (parameters.CellsFirstRow == null || parameters.CellsSecondRow == null)
+            if (parameters.CellsFirstColumn == null)
             {
                 _errorMessage = ErrorTablePdfMessage.Не_указаны_параметры_шапки;
                 return false;
@@ -83,103 +82,55 @@ namespace App.Components.AntonovComponents
             document.Styles.AddStyle("NormalContent", "Normal");
         }
 
-        private bool CreateHeadInTable(Table table, List<CellPdfTable> firstRow, List<CellPdfTable> secondRow)
+        private bool CreateHeadInTable(Table table, List<CellPdfTable> firstColumn)
         {
-            var countColumnsTop = 0;
-            var countMergeColumns = 0;
-            foreach (var cell in firstRow)
-            {
-                countColumnsTop += cell.CountCells;
-                countMergeColumns = cell.CountCells > 1 ? countMergeColumns += cell.CountCells : countMergeColumns;
-            }
+            _propertyInfos = new List<string>();
 
-            if (countMergeColumns != secondRow.Count)
+            int flag = 0; // нужно ли слиять ячейки
+            for (var i = 0; i < firstColumn.Count; i++)
             {
-                _errorMessage = ErrorTablePdfMessage.Неправильно_указаны_ячейки_шапки;
-                return false;
-            }
-
-            foreach (var cell in firstRow)
-            {
-                for (var i = 0; i < cell.CountCells; i++)
+                if (firstColumn[i].PropertyName != null)
                 {
-                    table.AddColumn(cell.ColumnWidth);
+                    Row row = table.AddRow();
+                    Cell cell;
+                    if (flag == 0)
+                    {
+                        cell = row.Cells[0];
+                        cell.AddParagraph(firstColumn[i].Text);
+                        //в шапке два столбца первые, нужно объединить справа
+                        cell.MergeRight = 1;
+                    }
+                    else
+                    {
+                        cell = row.Cells[1];
+                        cell.AddParagraph(firstColumn[i].Text);
+                        flag--;
+                    }
+                    _propertyInfos.Add(firstColumn[i].PropertyName);
                 }
-            }
-
-            _propertyInfos = new Dictionary<string, int>();
-            table.AddRow();
-
-            var currentIndex = 0;
-            foreach (var cell in firstRow)
-            {
-                var currentCell = table.Rows[0].Cells[currentIndex];
-                if (string.IsNullOrEmpty(cell.Text))
-                {
-                    _errorMessage = ErrorTablePdfMessage.Не_указано_название_для_колонки;
-                    return false;
-                }
-                currentCell.AddParagraph(cell.Text);
-                currentCell.Format.Alignment = ParagraphAlignment.Center;
-                if (cell.CountCells > 1)
-                {
-                    currentCell.MergeRight = cell.CountCells - 1;
-                    currentIndex += cell.CountCells;
-                }
+                //else we need to merge
                 else
                 {
-                    if (string.IsNullOrEmpty(cell.PropertyName))
-                    {
-                        _errorMessage = ErrorTablePdfMessage.Не_указано_название_свойства_для_колонки;
-                        return false;
-                    }
-                    _propertyInfos.Add(cell.PropertyName, currentIndex);
-                    currentIndex++;
+                    Row row = table.AddRow();
+                    Cell cell = row.Cells[0];
+                    cell.AddParagraph(firstColumn[i].Text);
+
+                    row.Cells[0].MergeDown = firstColumn[i].CountCells - 1;
+
+                    //пишем в тот же ряд новый параграф
+                    cell = row.Cells[1];
+                    cell.AddParagraph(firstColumn[i + 1].Text);
+                    _propertyInfos.Add(firstColumn[i + 1].PropertyName);
+
+                    flag = firstColumn[i].CountCells - 1;
+                    //свойство уже записи, пропускаем одну итерацию
+                    i++;
                 }
             }
 
-            table.AddRow();
-
-            var countMerged = 0;
-            currentIndex = 0;
-            for (var i = 0; i < countColumnsTop; i++)
-            {
-                var highCurrentCell = table.Rows[0].Cells[i];
-                var currentCell = table.Rows[1].Cells[i];
-
-                countMerged = highCurrentCell.MergeRight > 0 ? highCurrentCell.MergeRight + 1 : countMerged;
-                if (countMerged != 0)
-                {
-                    if (string.IsNullOrEmpty(secondRow[currentIndex].Text))
-                    {
-                        _errorMessage = ErrorTablePdfMessage.Не_указано_название_для_колонки;
-                        return false;
-                    }
-                    currentCell.AddParagraph(secondRow[currentIndex].Text);
-                    if (string.IsNullOrEmpty(secondRow[currentIndex].PropertyName))
-                    {
-                        _errorMessage = ErrorTablePdfMessage.Не_указано_название_свойства_для_колонки;
-                        return false;
-                    }
-                    _propertyInfos.Add(secondRow[currentIndex].PropertyName, i);
-                    currentCell.Format.Alignment = ParagraphAlignment.Center;
-                    currentIndex++;
-                    countMerged--;
-                }
-                else
-                {
-                    highCurrentCell.MergeDown = 1;
-                }
-            }
             return true;
         }
 
-        /// <summary>
-        /// Метод создания pdf документа стаблицей
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="tablePdfParameters">Параметры таблицы</param>
-        /// <returns>Результат создания документа</returns>
         public bool CreateDocument<T>(TablePdfParameters<T> tablePdfParameters) where T : class
         {
             if (!InputValidation(tablePdfParameters))
@@ -205,30 +156,51 @@ namespace App.Components.AntonovComponents
             table.Borders = borders;
             table.Rows.VerticalAlignment = VerticalAlignment.Center;
 
-            if (!CreateHeadInTable(table, tablePdfParameters.CellsFirstRow, tablePdfParameters.CellsSecondRow))
+            //все свойства класса лабораторной работы
+            var props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            //две колонки под шапку
+            table.AddColumn(Unit.FromCentimeter(2));
+            table.AddColumn(Unit.FromCentimeter(2));
+
+            for (int i = 0; i < tablePdfParameters.DataList.Count; i++)
+            {
+                table.AddColumn(Unit.FromCentimeter(3));
+            }
+
+            if (!CreateHeadInTable(table, tablePdfParameters.CellsFirstColumn))
             {
                 return false;
             }
 
-            var props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var data in tablePdfParameters.DataList)
+            //заполнение рядов/столбцов с данными
+            for (int j = 0; j < tablePdfParameters.DataList.Count; j++)
             {
-                var newRow = table.AddRow();
-                foreach (var property in props)
+                var data = tablePdfParameters.DataList[j];
+                for (int i = 0; i < _propertyInfos.Count; i++)
                 {
-                    var prop = data.GetType().GetProperty(property.Name);
+                    var prop = data.GetType().GetProperty(_propertyInfos[i]);
                     if (prop == null)
                     {
                         _errorMessage = ErrorTablePdfMessage.Неверно_указано_название_свойства_для_колонки;
                         return false;
                     }
-                    var columnIndex = _propertyInfos[prop.Name];
-                    newRow.Cells[columnIndex].AddParagraph(prop.GetValue(data, null)?.ToString());
+
+                    //+2 потому что первые два столбца шапка
+                    Cell cell = table.Rows[i].Cells[j + 2];
+                    cell.AddParagraph(prop.GetValue(data, null)?.ToString());
                 }
             }
 
             var renderer = new PdfDocumentRenderer(true) { Document = document };
-            renderer.RenderDocument();
+            try
+            {
+                renderer.RenderDocument();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Неправильные настройки таблицы");
+            }
             renderer.PdfDocument.Save(tablePdfParameters.Path);
             return true;
         }

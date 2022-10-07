@@ -56,7 +56,6 @@
             this.линейнаяДиаграммаToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(335, 164);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // лабораторныеРаботыToolStripMenuItem
             // 
