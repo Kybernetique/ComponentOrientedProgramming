@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp
+namespace App
 {
-    public class Test
+    public class Lab1
     {
         public string name { get; set; }
     }
