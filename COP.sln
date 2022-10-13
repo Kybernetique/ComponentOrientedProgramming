@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App", "WinFormsApp\App.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonVisualComponents", "NonVisualComponents\NonVisualComponents.csproj", "{588BAB49-0E71-4D33-A138-BE4138A8EE2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsControlLibrary", "WinFormsControlLibrary\WinFormsControlLibrary.csproj", "{B1CF79EE-2442-4BDC-9F89-9FDA21BFBBCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualComponents", "WinFormsControlLibrary\VisualComponents.csproj", "{B1CF79EE-2442-4BDC-9F89-9FDA21BFBBCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,8 +1,8 @@
-﻿namespace NonVisualComponents
+﻿namespace App.Components.AlexandrovComponents
 {
-    partial class WordTableSecond
+    partial class ComboBoxUserControl
     {
-        /// <summary>
+        /// <summary> 
         /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -22,15 +22,36 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary>
+        /// <summary> 
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.comboBox = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // comboBox
+            // 
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(3, 26);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(144, 23);
+            this.comboBox.TabIndex = 0;
+            // 
+            // ComboBoxUserControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox);
+            this.Name = "ComboBoxUserControl";
+            this.Size = new System.Drawing.Size(150, 73);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.ComboBox comboBox;
     }
 }

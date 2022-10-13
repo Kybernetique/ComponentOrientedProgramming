@@ -13,14 +13,14 @@ using System.Text;
 
 namespace NonVisualComponents
 {
-    public partial class WordTableSecond : Component
+    public partial class WordTableTwo : Component
     {
-        public WordTableSecond()
+        public WordTableTwo()
         {
             InitializeComponent();
         }
 
-        public WordTableSecond(IContainer container)
+        public WordTableTwo(IContainer container)
         {
             container.Add(this);
 

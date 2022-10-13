@@ -1,3 +1,4 @@
+using App.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace WinFormsApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormControlsTest());
+            Application.Run(new FormMainLab());
         }
     }
 }

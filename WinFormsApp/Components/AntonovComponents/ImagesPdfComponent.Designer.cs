@@ -1,6 +1,6 @@
-﻿namespace NonVisualComponents
+﻿namespace App.Components.AntonovComponents
 {
-    partial class WordTableFirst
+    partial class ImagesPdfComponent
     {
         /// <summary>
         /// Обязательная переменная конструктора.
