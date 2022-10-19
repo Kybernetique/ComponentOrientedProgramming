@@ -273,18 +273,31 @@ namespace App.Forms
                     result[3]++;
                 }
             }
-            data.Add("50-100", new int[] { result[0] });
-            data.Add("100-150", new int[] { result[1] });
-            data.Add("150-200", new int[] { result[2] });
-            data.Add("200-250", new int[] { result[3] });
+
+            int[] arr0 = new int[4];
+            int[] arr1 = new int[4];
+            int[] arr2 = new int[4];
+            int[] arr3 = new int[4];
+
+            arr0[0] = result[0];
+            arr1[1] = result[1];
+            arr2[2] = result[2];
+            arr3[3] = result[3];
+
+            data.Add("50-100", arr0);
+            data.Add("100-150", arr1);
+            data.Add("150-200", arr2);
+            data.Add("200-250", arr3);
+
 
 
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx", FileName = "3" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    linearDiagramExcelComponent.Save(dialog.FileName, "Title", "Diagram", Components.AlexandrovComponents.HelperEnums.ExcelLegendPosition.Right,
+                    linearDiagramExcelComponent.Save(dialog.FileName, "Title", "Диаграмма", Components.AlexandrovComponents.HelperEnums.ExcelLegendPosition.TopRight,
                         data, axis);
+                    
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
                 }
