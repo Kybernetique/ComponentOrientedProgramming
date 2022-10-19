@@ -82,27 +82,27 @@ namespace App.Forms
             }
             if (string.IsNullOrEmpty(textBoxStudentOne.Text))
             {
-                textBoxStudentOne.Text = "Отсутсвует";
+                textBoxStudentOne.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxStudentTwo.Text))
             {
-                textBoxStudentTwo.Text = "Отсутсвует";
+                textBoxStudentTwo.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxStudentThree.Text))
             {
-                textBoxStudentThree.Text = "Отсутсвует";
+                textBoxStudentThree.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxStudentFour.Text))
             {
-                textBoxStudentFour.Text = "Отсутсвует";
+                textBoxStudentFour.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxStudentFive.Text))
             {
-                textBoxStudentFive.Text = "Отсутсвует";
+                textBoxStudentFive.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxStudentSix.Text))
             {
-                textBoxStudentSix.Text = "Отсутсвует";
+                textBoxStudentSix.Text = "Отсутствует";
             }
             if (string.IsNullOrEmpty(textBoxQuestions.textTypedValue.ToString()))
             {

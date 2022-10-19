@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace App.Forms
@@ -230,28 +231,55 @@ namespace App.Forms
 
         private void CreateDiagramExcel()
         {
-            Dictionary<string, int[]> data = new Dictionary<string, int[]>();
-            data.Add("first", new int[] { 1, 2, 3, 4 });
-            data.Add("second", new int[] { 2, 3, 2, 1 });
-            int[] arr1 = new int[251];
-            arr1[50] = 2;
-            arr1[100] = 3;
-            arr1[150] = 1;
-            arr1[200] = 4;
-            arr1[250] = 2;
+            Dictionary<string, int[]> data =
+                new Dictionary<string, int[]>();
+            Tuple<double, double> axis = new Tuple<double, double>(1, 4);
 
-            int[] arr2 = new int[251];
-            arr2[50] = 2;
-            arr2[100] = 2;
-            arr2[150] = 2;
-            arr2[200] = 1;
-            arr2[250] = 4;
+            List<LabViewModel> labListViewModel = labLogic.Read(null);
+            List<Lab> labList = new List<Lab>();
+            foreach (var lab in labListViewModel)
+            {
+                labList.Add
+                (
+                    new Lab()
+                    {
+                        Id = lab.Id,
+                        Topic = lab.Topic,
+                        Subject = lab.Subject,
+                        Questions = lab.Questions
+                    }
+                );
+            }
 
-            data.Add("str", arr1);
-            data.Add("sss", arr2);
-            Tuple<double, double> axis = new Tuple<double, double>(50, 250);
+            int[] result = new int[4];
+            int questionLength;
+            foreach (var lab in labList)
+            {
+                questionLength = lab.Questions.Length;
+                if (questionLength >= 50 && questionLength < 101)
+                {
+                    result[0]++;
+                }
+                else if (questionLength >= 100 && questionLength < 151)
+                {
+                    result[1]++;
+                }
+                else if (questionLength >= 150 && questionLength < 201)
+                {
+                    result[2]++;
+                }
+                else if (questionLength >= 200 && questionLength < 251)
+                {
+                    result[3]++;
+                }
+            }
+            data.Add("50-100", new int[] { result[0] });
+            data.Add("100-150", new int[] { result[1] });
+            data.Add("150-200", new int[] { result[2] });
+            data.Add("200-250", new int[] { result[3] });
 
-            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
+
+            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx", FileName = "3" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {

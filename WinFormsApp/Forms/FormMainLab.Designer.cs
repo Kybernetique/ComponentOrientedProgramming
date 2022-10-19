@@ -124,7 +124,7 @@
             this.listBoxUserControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxUserControl.Name = "listBoxUserControl";
             this.listBoxUserControl.SelectedIndex = -1;
-            this.listBoxUserControl.Size = new System.Drawing.Size(1090, 685);
+            this.listBoxUserControl.Size = new System.Drawing.Size(1184, 685);
             this.listBoxUserControl.TabIndex = 1;
             // 
             // FormMainLab
@@ -135,7 +135,7 @@
             this.Controls.Add(this.listBoxUserControl);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMainLab";
-            this.Text = "FormMainLab";
+            this.Text = "Главное меню";
             this.Load += new System.EventHandler(this.FormMainLab_Load);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);

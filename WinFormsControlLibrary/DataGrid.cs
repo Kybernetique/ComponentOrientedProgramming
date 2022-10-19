@@ -37,7 +37,8 @@ namespace WinFormsControlLibrary
         // Метoд очистки строк DataGrid
         public void ClearDataGrid()
         {
-            dataGridView.DataSource = null;
+            dataGridView.Rows.Clear();
+            dataGridView.Refresh();
         }
 
         // Метод конфигурации DataGridView. Отдельный метод для конфигурации столбцов. Через 

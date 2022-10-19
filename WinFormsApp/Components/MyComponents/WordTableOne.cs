@@ -18,7 +18,6 @@ namespace NonVisualComponents
         /*
              * Не визуальный компонент для создания документа с таблицами.
             У компонента должен быть публичный метод, который должен 
-            23
             принимать на вход имя файла (включая путь до файла), название
             документа (заголовок в документе) и набор таблиц (каждая
             представляет собой двумерный массив строк, где каждая строка –
@@ -109,7 +108,7 @@ namespace NonVisualComponents
                     docBody.Append(table);
                 }
                 docBody.AppendChild(CreateSectionProperties());
-                wordDocument.MainDocumentPart.Document.Save(); //
+                wordDocument.MainDocumentPart.Document.Save();
             }
         }
 

@@ -236,7 +236,7 @@
             this.textBoxQuestions.maxTextLength = null;
             this.textBoxQuestions.minTextLength = null;
             this.textBoxQuestions.Name = "textBoxQuestions";
-            this.textBoxQuestions.Size = new System.Drawing.Size(177, 60);
+            this.textBoxQuestions.Size = new System.Drawing.Size(259, 60);
             this.textBoxQuestions.TabIndex = 21;
             this.textBoxQuestions.textTypedValue = null;
             // 
@@ -267,7 +267,7 @@
             this.Controls.Add(this.labelTopic);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormLab";
-            this.Text = "FormLab";
+            this.Text = "Лабораторная работа";
             this.Load += new System.EventHandler(this.FormLab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

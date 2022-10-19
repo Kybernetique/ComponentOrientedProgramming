@@ -33,12 +33,13 @@
             // 
             // listBox
             // 
+            this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 25;
-            this.listBox.Location = new System.Drawing.Point(4, 5);
+            this.listBox.Location = new System.Drawing.Point(0, 0);
             this.listBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(923, 554);
+            this.listBox.Size = new System.Drawing.Size(1100, 568);
             this.listBox.TabIndex = 0;
             // 
             // ListBoxUserControl
@@ -48,7 +49,7 @@
             this.Controls.Add(this.listBox);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ListBoxUserControl";
-            this.Size = new System.Drawing.Size(931, 568);
+            this.Size = new System.Drawing.Size(1100, 568);
             this.ResumeLayout(false);
 
         }
