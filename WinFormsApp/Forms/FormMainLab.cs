@@ -1,4 +1,5 @@
-﻿using App.Components.AntonovComponents;
+﻿using App.Components.AlexandrovComponents.HelperModels;
+using App.Components.AntonovComponents;
 using App.Components.AntonovComponents.HelperModels;
 using App.DatabaseImplement.Models;
 using App.Logics.BindingModels;
@@ -17,17 +18,6 @@ namespace App.Forms
     {
         private readonly LabLogic labLogic = new LabLogic();
 
-// Наши лабы
-List<Lab> labs = new List<Lab>
-        {
-                new Lab { Id = 1, Topic = "Базы данных",Subject = "Программная инженерия", Questions= "Какие бывают базы данных?" },
-                new Lab { Id = 2, Topic = "Программирование",Subject = "Программная инженерия", Questions= "Какие бывают модификаторы доступа? В чём их отличие"},
-                new Lab { Id = 3,Topic = "Операционные системы", Subject = "Программная инженерия", Questions = "Что такое драйвер?"},
-                new Lab { Id = 4,Topic = "Комплексные числа",Subject = "Математика", Questions="Что такое комплексное число?"},
-                new Lab { Id = 5,Topic = "Булева алгебра",Subject = "Математика", Questions= "Виды логических операций"} 
-        };
-           
-
         public FormMainLab()
         {
             InitializeComponent();
@@ -37,8 +27,8 @@ List<Lab> labs = new List<Lab>
         {
             listBoxUserControl.SetPreValue("{");
             listBoxUserControl.SetPostValue("}");
-            listBoxUserControl.SetLayout("Дисциплина {Subject}, Идентификатор {Id}, Тема {Topic}," +
-            " Вопросы {Questions}");
+            listBoxUserControl.SetLayout("Дисциплина: {Subject}," +
+                " Идентификатор: {Id}, Тема: {Topic}, Вопросы: {Questions}");
             try
             {
                 List<LabViewModel> list = labLogic.Read(null);
@@ -49,7 +39,7 @@ List<Lab> labs = new List<Lab>
                     {
 
                         Subject = product.Subject,
-                        Id = (int)product.Id,
+                        Id = product.Id,
                         Topic = product.Topic,
                         Questions = product.Questions,
                         StudentOne = product.StudentOne,
@@ -132,7 +122,7 @@ List<Lab> labs = new List<Lab>
             string fileName = "";
             try
             {
-                using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+                using (var dialog = new SaveFileDialog { Filter = "docx|*.docx", FileName = "1" })
                 {
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
@@ -142,23 +132,23 @@ List<Lab> labs = new List<Lab>
                     }
                 }
                 // TO-DO
-                List<string[,]> datas = new List<string[,]>();
+                List<string[,]> table = new List<string[,]>();
                 int count = list.Count;
-                string[,] data = new string[count, 6];
+                string[,] students = new string[count, 6];
                 int i = 0;
                 foreach (var listItem in list)
                 {
-                    data[i, 0] = listItem.StudentOne;
-                    data[i, 1] = listItem.StudentTwo;
-                    data[i, 2] = listItem.StudentThree;
-                    data[i, 3] = listItem.StudentFour;
-                    data[i, 4] = listItem.StudentFive;
-                    data[i, 5] = listItem.StudentSix;
+                    students[i, 0] = listItem.StudentOne;
+                    students[i, 1] = listItem.StudentTwo;
+                    students[i, 2] = listItem.StudentThree;
+                    students[i, 3] = listItem.StudentFour;
+                    students[i, 4] = listItem.StudentFive;
+                    students[i, 5] = listItem.StudentSix;
                     if (i < count)
                         i++;
                 }
-                datas.Add(data);
-                wordTableOne.SaveData(fileName, "Отчёт", datas);
+                table.Add(students);
+                wordTableOne.SaveData(fileName, "Отчёт", table);
             }
             catch (Exception ex)
             {
@@ -167,10 +157,23 @@ List<Lab> labs = new List<Lab>
             }
         }
 
-        [Obsolete]
         private void CreateDocumentPDF()
         {
-            // HEAD
+            List<LabViewModel> labListViewModel = labLogic.Read(null);
+            List<Lab> labList = new List<Lab>();
+            foreach (var lab in labListViewModel)
+            {
+                labList.Add
+                (
+                    new Lab()
+                    {
+                        Id = lab.Id,
+                        Topic = lab.Topic,
+                        Subject = lab.Subject,
+                        Questions = lab.Questions
+                    }
+                );
+            }
             var columnTablePdfFirst = new List<CellPdfTable>
             {
                 new CellPdfTable()
@@ -185,6 +188,11 @@ List<Lab> labs = new List<Lab>
                 },
                 new CellPdfTable()
                 {
+                    Text = "Описание",
+                    CountCells = 2
+                },
+                new CellPdfTable()
+                {
                     Text = "Дисциплина",
                     PropertyName = "Subject"
                 },
@@ -195,7 +203,7 @@ List<Lab> labs = new List<Lab>
                 }
             };
 
-            using (var d = new SaveFileDialog() { Filter = "pdf|*.pdf", FileName = "Table" })
+            using (var d = new SaveFileDialog() { Filter = "pdf|*.pdf", FileName = "2" })
             {
                 if (d.ShowDialog() == DialogResult.OK)
                 {
@@ -204,7 +212,7 @@ List<Lab> labs = new List<Lab>
                     {
                         Path = d.FileName,
                         Title = "Таблица",
-                        DataList = labs,
+                        DataList = labList,
                         CellsFirstColumn = columnTablePdfFirst,
                         TitleTextSize = 14,
                         ContentTextSize = 10

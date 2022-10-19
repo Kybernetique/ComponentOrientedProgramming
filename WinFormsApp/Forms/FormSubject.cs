@@ -87,7 +87,7 @@ namespace App.Forms
 
         private void dataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.C)
+            if (e.KeyData == Keys.F1)
             {
                 if (dataGridView.Rows.Count == 0)
                 {

@@ -58,17 +58,17 @@ namespace WinFormsControlLibrary
         }
 
         // Полуение объекта из строки
-        public T GetSelectedObjectIntoRow<T>()
+        public T GetSelectedObjectIntoRow<T>()  where T : class, new()
         {
-            T objectMy = (T)Activator.CreateInstance(typeof(T));
+            T obj = (T)Activator.CreateInstance(typeof(T));
             var propertiesObj = typeof(T).GetProperties();
-            foreach (var properties in propertiesObj)
+            foreach (var property in propertiesObj)
             {
                 bool propIsExist = false;
                 int columnIndex = 0;
                 for (; columnIndex < dataGridView.Columns.Count; columnIndex++)
                 {
-                    if (dataGridView.Columns[columnIndex].DataPropertyName.ToString() == properties.Name)
+                    if (dataGridView.Columns[columnIndex].DataPropertyName.ToString() == property.Name)
                     {
                         propIsExist = true;
                         break;
@@ -76,9 +76,9 @@ namespace WinFormsControlLibrary
                 }
                 if (!propIsExist) { throw new Exception("can not find propertie"); };
                 object value = dataGridView.SelectedRows[0].Cells[columnIndex].Value;
-                properties.SetValue(objectMy, value);
+                property.SetValue(obj, value);
             }
-            return objectMy;
+            return obj;
         }
 
         //  Заполнение DataGridView построчно
