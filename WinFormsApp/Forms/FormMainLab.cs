@@ -132,7 +132,6 @@ namespace App.Forms
                        MessageBoxIcon.Information);
                     }
                 }
-                // TO-DO
                 List<string[,]> table = new List<string[,]>();
                 int count = list.Count;
                 string[,] students = new string[count, 6];
@@ -187,6 +186,7 @@ namespace App.Forms
                     Text = "Тема",
                     PropertyName = "Topic"
                 },
+
                 new CellPdfTable()
                 {
                     Text = "Описание",
@@ -195,7 +195,7 @@ namespace App.Forms
                 new CellPdfTable()
                 {
                     Text = "Дисциплина",
-                    PropertyName = "Subject"
+                    PropertyName = "Subject",
                 },
                 new CellPdfTable()
                 {
@@ -289,15 +289,13 @@ namespace App.Forms
             data.Add("150-200", arr2);
             data.Add("200-250", arr3);
 
-
-
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx", FileName = "3" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     linearDiagramExcelComponent.Save(dialog.FileName, "Title", "Диаграмма", Components.AlexandrovComponents.HelperEnums.ExcelLegendPosition.TopRight,
                         data, axis);
-                    
+
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
                 }

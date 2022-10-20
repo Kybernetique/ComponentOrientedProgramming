@@ -85,35 +85,45 @@ namespace App.Forms
             LoadData();
         }
 
-        private void dataGridView_KeyDown(object sender, KeyEventArgs e)
+/*        private void dataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.F1)
+            if (e.KeyData == (Keys.Control | Keys.C))
             {
-                if (dataGridView.Rows.Count == 0)
-                {
-                    list.Add(new SubjectViewModel());
-                    dataGridView.DataSource = new List<SubjectViewModel>(list);
-                    dataGridView.CurrentCell = dataGridView.Rows[0].Cells[1];
-                    return;
-                }
-                else if (dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1].Value != null)
-                {
-                    list.Add(new SubjectViewModel());
-                    dataGridView.DataSource = new List<SubjectViewModel>(list);
-                    dataGridView.CurrentCell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1];
-                    return;
-                }
+
             }
             if (e.KeyData == Keys.Delete)
             {
-                if (MessageBox.Show("Вы действительно хотите удалить?", "Предупреждение",
-                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                {
-                    logic.Delete(new SubjectBindingModel() { Id = (int)dataGridView.CurrentRow.Cells[0].Value });
-                    list = logic.Read(null);
-                    dataGridView.DataSource = new List<SubjectViewModel>(list);
-                }
 
+
+            }
+        }*/
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.Rows.Count == 0)
+            {
+                list.Add(new SubjectViewModel());
+                dataGridView.DataSource = new List<SubjectViewModel>(list);
+                dataGridView.CurrentCell = dataGridView.Rows[0].Cells[1];
+                return;
+            }
+            else if (dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1].Value != null)
+            {
+                list.Add(new SubjectViewModel());
+                dataGridView.DataSource = new List<SubjectViewModel>(list);
+                dataGridView.CurrentCell = dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[1];
+                return;
+            }
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить?", "Предупреждение",
+            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                logic.Delete(new SubjectBindingModel() { Id = (int)dataGridView.CurrentRow.Cells[0].Value });
+                list = logic.Read(null);
+                dataGridView.DataSource = new List<SubjectViewModel>(list);
             }
         }
     }
