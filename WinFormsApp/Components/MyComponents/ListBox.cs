@@ -21,22 +21,6 @@ namespace WinFormsControlLibrary
             get { return listBox1.Text; }
         }
 
-        private void ListBox_SelectedValueChanged(object sender, System.EventArgs e)
-        {
-            eventHandler.Invoke(sender, e);
-        }
-
-        public event EventHandler eventHandler;
-
-        /// <summary>
-        /// Событие, которое вызывается при изменении элемента
-        /// </summary>
-        public event EventHandler SpecEvent
-        {
-            add { eventHandler += value; }
-            remove { eventHandler -= value; }
-        }
-
         public ListBox()
         {
             InitializeComponent();
@@ -55,7 +39,6 @@ namespace WinFormsControlLibrary
         {
             listBox1.Items.Clear();
             listBox1.ResetText();
-
         }
 
         public string SelectedElement

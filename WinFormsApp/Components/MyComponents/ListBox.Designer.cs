@@ -40,7 +40,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(220, 129);
             this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedValueChanged += new System.EventHandler(this.ListBox_SelectedValueChanged);
             // 
             // ListBox
             // 

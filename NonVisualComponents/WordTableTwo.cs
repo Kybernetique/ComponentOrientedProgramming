@@ -150,7 +150,7 @@ namespace NonVisualComponents
                 property.Add(propInfo);
             }
 
-            //бегаем по нашим данным, одна итерация = одна строка данных
+            // Бегаем по нашим данным, одна итерация = одна строка данных
             for (int i = 0; i < config.ListData.Count; i++)
             {
                 TableRow tableRow = new TableRow();

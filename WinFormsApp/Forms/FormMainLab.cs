@@ -97,7 +97,8 @@ namespace App.Forms
         {
             try
             {
-                LabViewModelListBox lab = listBoxUserControl.GetSelected<LabViewModelListBox>();
+                LabViewModelListBox lab = 
+                    listBoxUserControl.GetSelected<LabViewModelListBox>();
                 FormLab form = new FormLab();
                 form.Id = (int)lab.Id;
                 form.ShowDialog();

@@ -17,8 +17,9 @@ namespace App.Forms
     {
         public int Id { set { id = value; } }
         private readonly LabLogic productLogic = new LabLogic();
-        private readonly SubjectLogic unitOfMeasurementLogic = new SubjectLogic();
+        private readonly SubjectLogic subjectLogic = new SubjectLogic();
         private int? id;
+
         
         public FormLab()
         {
@@ -30,7 +31,7 @@ namespace App.Forms
         {
             textBoxQuestions.minTextLength = 50;
             textBoxQuestions.maxTextLength = 250;
-            List<SubjectViewModel> list = unitOfMeasurementLogic.Read(null);
+            List<SubjectViewModel> list = subjectLogic.Read(null);
             List<String> listStr = new List<String>();
             foreach (var name in list)
             {
@@ -68,10 +69,6 @@ namespace App.Forms
             }
         }
 
-        private void changeUnit(object sender, EventArgs e)
-        {
-            listBoxSubject.ValueList = listBoxSubject.ValueList;
-        }
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxTopic.Text))

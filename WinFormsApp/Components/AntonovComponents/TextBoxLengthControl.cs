@@ -12,7 +12,7 @@ namespace App.Components.AntonovComponents
 {
     public partial class TextBoxLengthControl : UserControl
     {
-        private event EventHandler _textBoxTextChange;
+        private event EventHandler _textBoxTextChanged;
         public int? minTextLength { get; set; }
         public int? maxTextLength { get; set; }
         private string successMessage = "Все верно";
@@ -41,7 +41,7 @@ namespace App.Components.AntonovComponents
             {
                 if (minTextLength != null && maxTextLength != null)
                 {
-                    if (textBox.Text.Length > minTextLength && textBox.Text.Length < maxTextLength)
+                    if (value.Length > minTextLength && value.Length < maxTextLength) // before: textBox.Text.Length > minTextLength && textBox.Text.Length < maxTextLength
                     {
                         textBox.Text = value;
                     }
@@ -51,12 +51,12 @@ namespace App.Components.AntonovComponents
         public TextBoxLengthControl()
         {
             InitializeComponent();
-            textBox.TextChanged += (sender, e) => _textBoxTextChange?.Invoke(sender, e);
+            textBox.TextChanged += (sender, e) => _textBoxTextChanged?.Invoke(sender, e);
         }
         public event EventHandler textBoxSelectedElementChange
         {
-            add { _textBoxTextChange += value; }
-            remove { _textBoxTextChange -= value; }
+            add { _textBoxTextChanged += value; }
+            remove { _textBoxTextChanged -= value; }
         }
     }
 }

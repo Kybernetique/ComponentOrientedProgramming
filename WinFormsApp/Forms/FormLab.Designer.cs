@@ -227,7 +227,6 @@
             this.listBoxSubject.Size = new System.Drawing.Size(259, 155);
             this.listBoxSubject.TabIndex = 20;
             this.listBoxSubject.ValueList = "";
-            this.listBoxSubject.SpecEvent += new System.EventHandler(this.changeUnit);
             // 
             // textBoxQuestions
             // 
