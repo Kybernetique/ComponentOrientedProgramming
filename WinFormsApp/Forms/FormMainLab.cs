@@ -173,7 +173,7 @@ namespace App.Forms
 
         private void CreateSimpleDoc()
         {
-            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx"})
             {
                 if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateSimpleDocument(
                     new PluginsConventionSaveDocument()
@@ -194,10 +194,10 @@ namespace App.Forms
 
         private void CreateTableDoc()
         {
-            using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
+            using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf"})
             {
-                if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateTableDocument(new
-                    PluginsConventionSaveDocument()
+                if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateTableDocument(
+                    new PluginsConventionSaveDocument()
                 {
                     FileName = dialog.FileName
                 }))
@@ -215,7 +215,7 @@ namespace App.Forms
 
         private void CreateChartDoc()
         {
-            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xls" })
+            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xls"})
             {
                 if (dialog.ShowDialog() == DialogResult.OK && _plugins[_selectedPlugin].CreateChartDocument(new
                     PluginsConventionSaveDocument()

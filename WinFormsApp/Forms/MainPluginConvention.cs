@@ -12,6 +12,7 @@ using App.Logics.BindingModels;
 using App.DatabaseImplement.Models;
 using App.Components.AntonovComponents.HelperModels;
 using App.Components.MyComponents.HelperModels;
+using App.Components.AntonovComponents;
 
 namespace App.Forms
 {
@@ -25,9 +26,10 @@ namespace App.Forms
         {
             dataGridView.AddColumns(new List<TableData>() {
                 new TableData() { Header = "Subject", PropertyName = "Subject", Visible = true, Width = 100},
-                new TableData() { Header = "Id", PropertyName = "Id", Visible = true, Width = 50},
                 new TableData() { Header = "Topic", PropertyName = "Topic", Visible = true, Width = 100},
-                new TableData() { Header = "Questions", PropertyName = "Questions", Visible = true, Width = 200 } });
+                new TableData() { Header = "Questions", PropertyName = "Questions", Visible = true, Width = 200 },
+                new TableData() { Header = "Id", PropertyName = "Id", Visible = true, Width = 50}
+                 });
             ReloadData();
         }
 
@@ -135,20 +137,21 @@ namespace App.Forms
             try
             {
                 List<LabViewModel> labListViewModel = labLogic.Read(null);
-                List<Lab> labList = new List<Lab>();
-                foreach (var lab in labListViewModel)
-                {
-                    labList.Add
-                    (
-                        new Lab()
-                        {
-                            Id = lab.Id,
-                            Topic = lab.Topic,
-                            Subject = lab.Subject,
-                            Questions = lab.Questions
-                        }
-                    );
-                }
+                //List<Lab> labList = new List<Lab>();
+                TablePdfComponent tablePdfComponent = new TablePdfComponent();
+                //foreach (var lab in labListViewModel)
+                //{
+                //    labList.Add
+                //    (
+                //        new Lab()
+                //        {
+                //            Id = lab.Id,
+                //            Topic = lab.Topic,
+                //            Subject = lab.Subject,
+                //            Questions = lab.Questions
+                //        }
+                //    );
+                //}
                 var columnTablePdfFirst = new List<CellPdfTable>
                 {
                     new CellPdfTable()
@@ -178,6 +181,13 @@ namespace App.Forms
                         PropertyName = "Questions"
                     }
                 };
+                tablePdfComponent.CreateDocument(new TablePdfParameters<LabViewModel>()
+                {
+                    Path = saveDocument.FileName,
+                    Title = "Лабораторные работы",
+                    CellsFirstColumn = columnTablePdfFirst,
+                    DataList = labListViewModel
+                });
                 return true;
             }
             catch (Exception ex)
