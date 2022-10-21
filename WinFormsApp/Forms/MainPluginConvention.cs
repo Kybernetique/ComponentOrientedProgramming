@@ -13,6 +13,7 @@ using App.DatabaseImplement.Models;
 using App.Components.AntonovComponents.HelperModels;
 using App.Components.MyComponents.HelperModels;
 using App.Components.AntonovComponents;
+using App.Components.AlexandrovComponents;
 
 namespace App.Forms
 {
@@ -137,21 +138,7 @@ namespace App.Forms
             try
             {
                 List<LabViewModel> labListViewModel = labLogic.Read(null);
-                //List<Lab> labList = new List<Lab>();
                 TablePdfComponent tablePdfComponent = new TablePdfComponent();
-                //foreach (var lab in labListViewModel)
-                //{
-                //    labList.Add
-                //    (
-                //        new Lab()
-                //        {
-                //            Id = lab.Id,
-                //            Topic = lab.Topic,
-                //            Subject = lab.Subject,
-                //            Questions = lab.Questions
-                //        }
-                //    );
-                //}
                 var columnTablePdfFirst = new List<CellPdfTable>
                 {
                     new CellPdfTable()
@@ -199,6 +186,7 @@ namespace App.Forms
 
         public bool CreateChartDocument(PluginsConventionSaveDocument saveDocument)
         {
+            LinearDiagramExcelComponent linearDiagramExcelComponent = new LinearDiagramExcelComponent();
             Dictionary<string, int[]> data =
                 new Dictionary<string, int[]>();
             Tuple<double, double> axis = new Tuple<double, double>(1, 4);
@@ -256,7 +244,10 @@ namespace App.Forms
             data.Add("100-150", arr1);
             data.Add("150-200", arr2);
             data.Add("200-250", arr3);
-            
+
+            linearDiagramExcelComponent.Save(saveDocument.FileName, "Title", "Диаграмма", Components.AlexandrovComponents.HelperEnums.ExcelLegendPosition.TopRight,
+            data, axis);
+
             return true;
         }
     }
