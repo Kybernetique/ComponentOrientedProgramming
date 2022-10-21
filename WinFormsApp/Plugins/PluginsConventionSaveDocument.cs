@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Components.MyComponents.HelperModels
+namespace App.Plugins
 {
-    public class WordInfo
+    public class PluginsConventionSaveDocument
     {
         public string FileName { get; set; }
-
-        public string Title { get; set; }
     }
 }

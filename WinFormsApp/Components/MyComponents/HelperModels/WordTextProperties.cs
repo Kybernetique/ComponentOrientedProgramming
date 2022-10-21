@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 
-namespace NonVisualComponents.HelperModels
+namespace App.Components.MyComponents.HelperModels
 {
     public class WordTextProperties
     {

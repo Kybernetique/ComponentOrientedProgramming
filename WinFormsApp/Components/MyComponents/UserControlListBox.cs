@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsControlLibrary
+namespace App.Components.MyComponents
 {
-    public partial class ListBox : UserControl
+    public partial class UserControlListBox : UserControl
     {
         public string ValueList
         {
@@ -21,7 +21,7 @@ namespace WinFormsControlLibrary
             get { return listBox1.Text; }
         }
 
-        public ListBox()
+        public UserControlListBox()
         {
             InitializeComponent();
         }

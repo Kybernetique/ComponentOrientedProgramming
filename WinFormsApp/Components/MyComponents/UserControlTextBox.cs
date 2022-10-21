@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace WinFormsControlLibrary
+namespace App.Components.MyComponents
 {
-    public partial class TextBox : UserControl
+    public partial class UserControlTextBox : UserControl
     {
-        public TextBox()
+        public UserControlTextBox()
         {
             InitializeComponent();
         }

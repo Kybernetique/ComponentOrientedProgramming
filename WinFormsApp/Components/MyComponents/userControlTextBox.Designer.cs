@@ -1,6 +1,6 @@
-﻿namespace WinFormsControlLibrary
+﻿namespace App.Components.MyComponents
 {
-    partial class TextBox
+    partial class UserControlTextBox
     {
         /// <summary>
         /// Required designer variable.

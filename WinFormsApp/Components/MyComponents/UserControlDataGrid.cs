@@ -1,17 +1,11 @@
-﻿using System;
+﻿using App.Components.MyComponents.HelperModels;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WinFormsControlLibrary
+namespace App.Components.MyComponents
 {
-    public partial class DataGrid : UserControl
+    public partial class UserControlDataGrid : UserControl
     {
         public int IndexRow
         {
@@ -29,7 +23,7 @@ namespace WinFormsControlLibrary
         }
 
         // Инициализация DataGrid
-        public DataGrid()
+        public UserControlDataGrid()
         {
             InitializeComponent();
         }
@@ -69,7 +63,7 @@ namespace WinFormsControlLibrary
                 int columnIndex = 0;
                 for (; columnIndex < dataGridView.Columns.Count; columnIndex++)
                 {
-                    if (dataGridView.Columns[columnIndex].DataPropertyName.ToString() == properties.Name)
+                    if (dataGridView.Columns[columnIndex].Name.ToString() == properties.Name)
                     {
                         propIsExist = true;
                         break;
@@ -77,12 +71,15 @@ namespace WinFormsControlLibrary
                 }
                 if (!propIsExist) { throw new Exception("can not find propertie"); };
                 object value = dataGridView.SelectedRows[0].Cells[columnIndex].Value;
-                properties.SetValue(objectMy, value);
+
+                var property = objectMy.GetType().GetProperty(properties.Name);
+                var valueReturn = Convert.ChangeType(value, property.PropertyType);
+
+                properties.SetValue(objectMy, valueReturn);
             }
             return objectMy;
         }
 
-        //  Заполнение DataGridView построчно
         // Заполнение DataGridView построчно
         public void AddRow<T>(T objectMy)
         {
@@ -96,6 +93,16 @@ namespace WinFormsControlLibrary
                 j++;
             }
             dataGridView.Rows.Add(objValue);
+        }
+
+        public void AddColumns(List<TableData> tableData)
+        {
+            for (int i = 0; i < tableData.Count; i++)
+            {
+                int index = dataGridView.Columns.Add(tableData[i].PropertyName, tableData[i].Header);
+                dataGridView.Columns[index].Visible = tableData[i].Visible;
+                dataGridView.Columns[index].Width = tableData[i].Width;
+            }
         }
     }
 }

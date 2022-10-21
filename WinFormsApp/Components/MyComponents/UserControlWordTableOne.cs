@@ -4,13 +4,13 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using NonVisualComponents.HelperModels;
+using App.Components.MyComponents.HelperModels;
 
-namespace NonVisualComponents
+namespace App.Components.MyComponents
 {
-    public partial class WordTableOne : Component
+    public partial class UserControlWordTableOne : Component
     {
-        public WordTableOne()
+        public UserControlWordTableOne()
         {
             InitializeComponent();
         }

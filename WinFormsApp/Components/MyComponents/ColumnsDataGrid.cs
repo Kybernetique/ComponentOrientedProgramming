@@ -1,4 +1,4 @@
-﻿namespace WinFormsControlLibrary
+﻿namespace App.Components.MyComponents
 {
     public class ColumnsDataGrid
     {

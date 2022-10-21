@@ -36,7 +36,7 @@
             // 
             this.textBox.Location = new System.Drawing.Point(3, 3);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(86, 23);
+            this.textBox.Size = new System.Drawing.Size(159, 23);
             this.textBox.TabIndex = 0;
             // 
             // labelError
@@ -54,7 +54,7 @@
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.textBox);
             this.Name = "TextBoxLengthControl";
-            this.Size = new System.Drawing.Size(124, 36);
+            this.Size = new System.Drawing.Size(170, 30);
             this.ResumeLayout(false);
             this.PerformLayout();
 

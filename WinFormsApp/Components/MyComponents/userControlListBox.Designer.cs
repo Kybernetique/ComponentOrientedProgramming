@@ -1,6 +1,6 @@
-﻿namespace WinFormsControlLibrary
+﻿namespace App.Components.MyComponents
 {
-    partial class DataGrid
+    partial class UserControlListBox
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,33 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // dataGridView
+            // listBox1
             // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(489, 309);
-            this.dataGridView.TabIndex = 0;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(3, 3);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(159, 79);
+            this.listBox1.TabIndex = 0;
             // 
-            // UserControlDataGrid
+            // ListBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView);
-            this.Name = "UserControlDataGrid";
-            this.Size = new System.Drawing.Size(495, 315);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.Controls.Add(this.listBox1);
+            this.Name = "ListBox";
+            this.Size = new System.Drawing.Size(169, 90);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

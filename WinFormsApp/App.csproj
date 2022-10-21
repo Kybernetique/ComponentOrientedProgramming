@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="5.0.17" />
@@ -21,27 +22,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NonVisualComponents\NonVisualComponents.csproj" />
-    <ProjectReference Include="..\WinFormsControlLibrary\VisualComponents.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Components\AlexandrovComponents\DateTextBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\AlexandrovComponents\ListBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\MyComponents\TextBox.cs">
+    <Compile Update="Components\MyComponents\UserControlTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\MyComponents\DataGrid.cs">
+    <Compile Update="Components\MyComponents\UserControlDataGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\MyComponents\ListBox.cs">
+    <Compile Update="Components\MyComponents\UserControlListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\MyComponents\WordTableOne.cs">
+    <Compile Update="Components\MyComponents\UserControlWordTableOne.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

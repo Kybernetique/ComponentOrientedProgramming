@@ -47,7 +47,6 @@ namespace App.Forms
         private void FormSubject_Load(object sender, EventArgs e)
         {
             LoadData();
-
         }
 
 

@@ -1,6 +1,6 @@
-﻿namespace NonVisualComponents
+﻿namespace App.Components.MyComponents
 {
-    partial class WordTableOne
+    partial class UserControlWordTableOne
     {
         /// <summary>
         /// Обязательная переменная конструктора.

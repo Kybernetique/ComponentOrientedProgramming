@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace App.Components.MyComponents.HelperModels
 {
-    public class WordInfo
+    public class TableData
     {
-        public string FileName { get; set; }
+        public string Header;
 
-        public string Title { get; set; }
+        public int Width;
+
+        public bool Visible;
+
+        public string PropertyName;
     }
 }
