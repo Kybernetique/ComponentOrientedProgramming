@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
+    <PackageReference Include="PDFsharp-MigraDoc-gdi" Version="1.50.5147" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AlexandrovComponents\BigTextExcelComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AlexandrovComponents\ComboBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="AlexandrovComponents\DateTextBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="AlexandrovComponents\LinearDiagramExcelComponent.cs" />
+    <Compile Update="AlexandrovComponents\ListBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="AlexandrovComponents\TableExcelComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\CheckedListBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\DiagramPdfComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\ImagesPdfComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\TablePdfComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\TextBoxLengthControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="AntonovComponents\TreeViewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MyComponents\UserControlDataGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MyComponents\UserControlListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MyComponents\UserControlTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MyComponents\UserControlWordTableOne.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
