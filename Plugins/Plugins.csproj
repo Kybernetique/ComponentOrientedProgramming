@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DatabaseImplement\DatabaseImplement.csproj" />
+    <ProjectReference Include="..\Tools\Tools.csproj" />
   </ItemGroup>
 
   <ItemGroup>

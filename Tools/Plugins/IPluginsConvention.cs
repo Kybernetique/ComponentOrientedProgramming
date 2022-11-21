@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Plugins.Plugins
+namespace Tools.Plugins
 {
     public interface IPluginsConvention
     {

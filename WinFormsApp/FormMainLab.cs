@@ -9,8 +9,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Plugins;
-using Plugins.Plugins;
+using Tools;
+using Tools.Plugins;
 
 namespace App
 {
@@ -32,7 +32,7 @@ namespace App
             PluginsManager manager = new PluginsManager();
             Dictionary<string, IPluginsConvention> dict = manager.dictionary;
 
-            ToolStripItem[] toolStripMenuItems = new ToolStripItem[2];
+            ToolStripItem[] toolStripMenuItems = new ToolStripItem[1];
 
             foreach (var key in dict.Keys)
             {
@@ -40,49 +40,11 @@ namespace App
                 labsToolStripMenuItem.Text = key;
                 labsToolStripMenuItem.Click += LabsToolStripMenuItem_Click;
                 toolStripMenuItems[0] = labsToolStripMenuItem;
+
             }
-
-            ToolStripMenuItem subjectsToolStripMenuItem = new ToolStripMenuItem();
-            subjectsToolStripMenuItem.Text = "Дисциплины";
-            subjectsToolStripMenuItem.Click += SubjectsToolStripMenuItem_Click;
-            toolStripMenuItems[1] = subjectsToolStripMenuItem;
-
             ControlsStripMenuItem.DropDownItems.AddRange(toolStripMenuItems);
             return dict;
         }
-
-        //private void FormMainLab_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(_selectedPlugin) || !_plugins.ContainsKey(_selectedPlugin))
-        //    {
-        //        return;
-        //    }
-        //    if (!e.Control)
-        //    {
-        //        return;
-        //    }
-        //    switch (e.KeyCode)
-        //    {
-        //        case Keys.A:
-        //            CreateLab();
-        //            break;
-        //        case Keys.U:
-        //            UpdateLab();
-        //            break;
-        //        case Keys.D:
-        //            DeleteLab();
-        //            break;
-        //        case Keys.S:
-        //            CreateSimpleDoc();
-        //            break;
-        //        case Keys.T:
-        //            CreateTableDoc();
-        //            break;
-        //        case Keys.C:
-        //            CreateChartDoc();
-        //            break;
-        //    }
-        //}
 
         private void CreateLab()
         {
@@ -198,6 +160,49 @@ namespace App
             panelControl.Controls.Clear();
             panelControl.Controls.Add(_plugins[_selectedPlugin].GetControl);
             panelControl.Controls[0].Dock = DockStyle.Fill;
+
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+            ToolStripMenuItem[] toolStripMenuItems = new ToolStripMenuItem[7];
+
+            ToolStripMenuItem toolStripMenuItemSubjects = new ToolStripMenuItem();
+            toolStripMenuItemSubjects.Text = "Дисциплины";
+            toolStripMenuItemSubjects.Click += SubjectsToolStripMenuItem_Click;
+            toolStripMenuItems[0] = toolStripMenuItemSubjects;
+
+            ToolStripMenuItem toolStripMenuItemCreate = new ToolStripMenuItem();
+            toolStripMenuItemCreate.Text = "Создать";
+            toolStripMenuItemCreate.Click += CreateLabToolStripMenuItem_Click;
+            toolStripMenuItems[1] = toolStripMenuItemCreate;
+
+            ToolStripMenuItem toolStripMenuItemUpdate = new ToolStripMenuItem();
+            toolStripMenuItemUpdate.Text = "Изменить";
+            toolStripMenuItemUpdate.Click += UpdateLabToolStripMenuItem_Click;
+            toolStripMenuItems[2] = toolStripMenuItemUpdate;
+
+            ToolStripMenuItem toolStripMenuItemDelete = new ToolStripMenuItem();
+            toolStripMenuItemDelete.Text = "Удалить";
+            toolStripMenuItemDelete.Click += DeleteLabToolStripMenuItem_Click;
+            toolStripMenuItems[3] = toolStripMenuItemDelete;
+
+            ToolStripMenuItem toolStripMenuItemSimpleDoc = new ToolStripMenuItem();
+            toolStripMenuItemSimpleDoc.Text = "Отчет Word";
+            toolStripMenuItemSimpleDoc.Click += SimpleDocToolStripMenuItem_Click;
+            toolStripMenuItems[4] = toolStripMenuItemSimpleDoc;
+
+
+            ToolStripMenuItem toolStripMenuItemTableDoc = new ToolStripMenuItem();
+            toolStripMenuItemTableDoc.Text = "Отчет PDF";
+            toolStripMenuItemTableDoc.Click += TableDocToolStripMenuItem_Click;
+            toolStripMenuItems[5] = toolStripMenuItemTableDoc;
+
+            ToolStripMenuItem toolStripMenuItemDiagramDoc = new ToolStripMenuItem();
+            toolStripMenuItemDiagramDoc.Text = "Диаграмма Excel";
+            toolStripMenuItemDiagramDoc.Click += ChartDocToolStripMenuItem_Click;
+            toolStripMenuItems[6] = toolStripMenuItemDiagramDoc;
+
+            contextMenu.Items.AddRange(toolStripMenuItems);
+            _plugins[_selectedPlugin].GetControl.ContextMenuStrip = contextMenu;
         }
 
         private void SubjectsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,7 +222,5 @@ namespace App
         private void TableDocToolStripMenuItem_Click(object sender, EventArgs e) => CreateTableDoc();
 
         private void ChartDocToolStripMenuItem_Click(object sender, EventArgs e) => CreateChartDoc();
-
-
     }
 }

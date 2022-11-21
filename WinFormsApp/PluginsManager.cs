@@ -1,4 +1,4 @@
-﻿using Plugins.Plugins;
+﻿using Tools.Plugins;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plugins
+namespace App
 {
     public class PluginsManager
     {

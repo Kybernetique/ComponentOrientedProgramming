@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plugins.Plugins
+namespace Tools.Plugins
 {
     public class PluginsConventionSaveDocument
     {

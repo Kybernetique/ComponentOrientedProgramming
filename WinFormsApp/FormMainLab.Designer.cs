@@ -32,7 +32,7 @@
             this.ControlsStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.действияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateLabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.UpdateLabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UpdateLabToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteLabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.документыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SimpleDocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +69,7 @@
             // 
             this.действияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateLabToolStripMenuItem,
-            this.UpdateLabToolStripMenuItem,
+            this.UpdateLabToolStripMenuItem1,
             this.DeleteLabToolStripMenuItem});
             this.действияToolStripMenuItem.Name = "действияToolStripMenuItem";
             this.действияToolStripMenuItem.Size = new System.Drawing.Size(103, 29);
@@ -84,14 +84,13 @@
             this.CreateLabToolStripMenuItem.Text = "Создать";
             this.CreateLabToolStripMenuItem.Click += new System.EventHandler(this.CreateLabToolStripMenuItem_Click);
             // 
-            // UpdateLabToolStripMenuItem
+            // UpdateLabToolStripMenuItem1
             // 
-            this.UpdateLabToolStripMenuItem.Name = "UpdateLabToolStripMenuItem";
-            this.UpdateLabToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + U";
-            this.UpdateLabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.UpdateLabToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.UpdateLabToolStripMenuItem.Text = "Изменить";
-            this.UpdateLabToolStripMenuItem.Click += new System.EventHandler(this.UpdateLabToolStripMenuItem_Click);
+            this.UpdateLabToolStripMenuItem1.Name = "UpdateLabToolStripMenuItem1";
+            this.UpdateLabToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.UpdateLabToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.UpdateLabToolStripMenuItem1.Text = "Изменить";
+            this.UpdateLabToolStripMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // DeleteLabToolStripMenuItem
             // 
@@ -191,12 +190,12 @@
         private System.Windows.Forms.ToolStripMenuItem действияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem документыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateLabToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem UpdateLabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteLabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SimpleDocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TableDocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ChartDocToolStripMenuItem;
         private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem UpdateLabToolStripMenuItem1;
     }
 }
